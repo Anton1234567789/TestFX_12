@@ -5,6 +5,11 @@ public class Person {
     private String fio;
     private String phone;
 
+    public Person(String uvan, String phone) {
+        this.fio = uvan;
+        this.phone = phone;
+    }
+
     public String getFio() {
         return fio;
     }
