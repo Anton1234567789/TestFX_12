@@ -13,9 +13,9 @@
    <children>
       <AnchorPane prefHeight="50.0" prefWidth="324.0">
          <children>
-            <Button fx:id="addButton" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#showDialog" prefHeight="25.0" prefWidth="38.0" text="Add" AnchorPane.leftAnchor="14.0" />
-            <Button fx:id="editButton" layoutX="140.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="Edit" AnchorPane.rightAnchor="139.0" />
-            <Button fx:id="deleteButton" layoutX="258.0" layoutY="13.0" mnemonicParsing="false" text="Delete" AnchorPane.rightAnchor="14.0" />
+            <Button fx:id="addButton" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#actionButtonPressed" prefHeight="25.0" prefWidth="38.0" text="Add" AnchorPane.leftAnchor="14.0" />
+            <Button fx:id="editButton" layoutX="140.0" layoutY="13.0" mnemonicParsing="false" onAction="#actionButtonPressed" prefHeight="25.0" prefWidth="45.0" text="Edit" AnchorPane.rightAnchor="139.0" />
+            <Button fx:id="deleteButton" layoutX="258.0" layoutY="13.0" mnemonicParsing="false" onAction="#actionButtonPressed" text="Delete" AnchorPane.rightAnchor="14.0" />
          </children>
       </AnchorPane>
       <AnchorPane maxHeight="50.0" prefHeight="50.0">
@@ -31,8 +31,8 @@
          <children>
             <TableView fx:id="tableAddressBook" prefHeight="200.0" prefWidth="282.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
-                <TableColumn prefWidth="143.0" text="FIO" fx:id="columnFIO" />
-                <TableColumn prefWidth="139.0" text="Tel" fx:id="columnPhone" />
+                <TableColumn fx:id="columnFIO" prefWidth="143.0" text="FIO" />
+                <TableColumn fx:id="columnPhone" prefWidth="139.0" text="Tel" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -45,7 +45,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="53.0" prefWidth="324.0">
          <children>
-            <Label fx:id="lableCount" layoutX="26.0" layoutY="18.0" text="Количество записей" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="26.0" />
+            <Label fx:id="labelCount" layoutX="26.0" layoutY="18.0" text="Количество записей: " AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="26.0" />
          </children>
       </AnchorPane>
    </children>
