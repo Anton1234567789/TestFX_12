@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,8 +19,10 @@ import sample.interfaces.impls.CollectionAddressBook;
 import sample.objects.Person;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MainController {
+public class MainController implements Initializable{
 
     private CollectionAddressBook addressBookImpl = new CollectionAddressBook();
 
@@ -58,6 +61,7 @@ public class MainController {
     private FXMLLoader fxmlLoader = new FXMLLoader();
     private EditDialogController editDialogController;
     private Stage editDialogStage;
+    private ResourceBundle resourceBundle;
 
     public Stage getMainStage() {
         return mainStage;
@@ -65,23 +69,6 @@ public class MainController {
 
     public void setMainStage(Stage mainStage) {
         this.mainStage = mainStage;
-    }
-
-    @FXML
-    private void initialize(){
-
-//        выделение нескльких записей
-//        tableAddressBook.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-        columnFIO.setCellValueFactory(new PropertyValueFactory<Person, String>("fio"));
-        columnPhone.setCellValueFactory(new PropertyValueFactory<Person, String>("phone"));
-
-        initListeners();
-
-        fillDate();
-
-        initLoader();
-
     }
 
     private void fillDate() {
@@ -120,7 +107,7 @@ public class MainController {
     }
 
     private void updateCountLabel(){
-        labelCount.setText("Количество записей: " + addressBookImpl.getPersonList().size());
+        labelCount.setText(resourceBundle.getString("count") + ": "+ addressBookImpl.getPersonList().size());
     }
 
 
@@ -171,5 +158,22 @@ public class MainController {
                 addressBookImpl.delete((Person) tableAddressBook.getSelectionModel().getSelectedItem());
                 break;
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.resourceBundle = resources;
+
+        //        выделение нескльких записей
+//        tableAddressBook.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        columnFIO.setCellValueFactory(new PropertyValueFactory<Person, String>("fio"));
+        columnPhone.setCellValueFactory(new PropertyValueFactory<Person, String>("phone"));
+
+        initListeners();
+
+        fillDate();
+
+        initLoader();
     }
 }
