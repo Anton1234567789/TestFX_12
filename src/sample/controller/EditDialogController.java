@@ -2,13 +2,18 @@ package sample.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.objects.Person;
+import sample.utils.DialogManager;
 
-public class EditDialogController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class EditDialogController implements Initializable {
     @FXML
     private Button btnOK;
 
@@ -23,6 +28,8 @@ public class EditDialogController {
 
     private Person person;
 
+    private ResourceBundle resourceBundle;
+
     public Person getPerson() {
         return person;
     }
@@ -34,9 +41,22 @@ public class EditDialogController {
     }
 
     public void actionSave(ActionEvent actionEvent) {
+        if (!checkValues()){
+            return;
+        }
         person.setPhone(txtPhone.getText());
         person.setFio(txtFIO.getText());
         actionClose(actionEvent);
+    }
+
+    private boolean checkValues(){
+        if (txtFIO.getText().trim().length()==0
+    ||
+                txtPhone.getText().trim().length()==0){
+            DialogManager.showInfoDialog(resourceBundle.getString("error"), resourceBundle.getString("fill_field"));
+            return false;
+        }
+        return true;
     }
 
 
@@ -45,6 +65,12 @@ public class EditDialogController {
 
         txtFIO.setText(person.getFio());
         txtPhone.setText(person.getPhone());
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.resourceBundle = resourceBundle;
 
     }
 }

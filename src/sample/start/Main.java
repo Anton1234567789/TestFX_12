@@ -23,8 +23,8 @@ public class Main extends Application {
         mainController.setMainStage(primaryStage);
 
         primaryStage.setTitle(fxmlLoader.getResources().getString("address_book"));
-        primaryStage.setMinHeight(500);
-        primaryStage.setMinWidth(300);
+        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(400);
         primaryStage.setScene(new Scene(fxmlMain, 300, 275));
         primaryStage.show();
     }

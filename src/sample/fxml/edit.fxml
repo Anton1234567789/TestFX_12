@@ -10,12 +10,12 @@
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Имя">
+            <Label text="%fio">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <Label text="Телефон">
+            <Label text="%phone">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
@@ -48,12 +48,12 @@
    <right>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnOK" defaultButton="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" onAction="#actionSave" text="ОК">
+            <Button fx:id="btnOK" defaultButton="true" maxWidth="50.0" minWidth="10.0" mnemonicParsing="false" onAction="#actionSave" prefHeight="25.0" prefWidth="64.0" text="ОК">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnCancel" cancelButton="true" mnemonicParsing="false" onAction="#actionClose" text="ОТМЕНА">
+            <Button fx:id="btnCancel" cancelButton="true" mnemonicParsing="false" onAction="#actionClose" text="%cancel">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
