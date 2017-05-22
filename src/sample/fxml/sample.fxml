@@ -23,6 +23,7 @@
          <children>
             <Button fx:id="searchButton" defaultButton="true" layoutX="196.0" layoutY="30.0" mnemonicParsing="false" onAction="#actionSearch" text="%search" AnchorPane.rightAnchor="0.0" />
             <CustomTextField fx:id="textSearch" layoutY="30.0" />
+            <TextField fx:id="txt_name" />
          </children>
          <VBox.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -47,6 +48,7 @@
       <AnchorPane prefHeight="53.0" prefWidth="324.0">
          <children>
             <Label fx:id="labelCount" layoutX="26.0" layoutY="18.0" text="Количество записей" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="26.0" />
+            <Button fx:id="selectDb" layoutX="238.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSelect" text="Select db" />
          </children>
       </AnchorPane>
    </children>

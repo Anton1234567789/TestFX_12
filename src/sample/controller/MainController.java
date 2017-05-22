@@ -18,6 +18,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.CustomTextField;
 import org.controlsfx.control.textfield.TextFields;
+import sample.db.DBConnections;
 import sample.interfaces.impls.CollectionAddressBook;
 import sample.objects.Person;
 import sample.utils.DialogManager;
@@ -25,6 +26,8 @@ import sample.utils.DialogManager;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -58,10 +61,17 @@ public class MainController implements Initializable{
     private Label labelCount;
 
     @FXML
+    private TextField txt_name;
+
+    @FXML
     private TableColumn<Person, String> columnFIO;
 
     @FXML
     private TableColumn<Person, String> columnPhone;
+
+    private Connection connection = null;
+
+    private PreparedStatement preparedStatement = null;
 
     private Parent fxmlEdit;
     private FXMLLoader fxmlLoader = new FXMLLoader();
@@ -69,6 +79,7 @@ public class MainController implements Initializable{
     private Stage editDialogStage;
     private ResourceBundle resourceBundle;
     private ObservableList<Person> backupList;
+    private ObservableList<Person> personList =  FXCollections.observableArrayList();
 
     public Stage getMainStage() {
         return mainStage;
@@ -83,7 +94,6 @@ public class MainController implements Initializable{
 
         backupList = FXCollections.observableArrayList();
         backupList.addAll(addressBookImpl.getPersonList());
-
         tableAddressBook.setItems(addressBookImpl.getPersonList());
     }
 
@@ -163,17 +173,17 @@ public class MainController implements Initializable{
                 break;
             case "editButton":
 //                editDialogController.setPerson((Person)tableAddressBook.getSelectionModel().getSelectedItem());
-                if (!personIsSelected(selectedPerson)){
-                        return;
-                }
+//                if (!personIsSelected(selectedPerson)){
+//                        return;
+//                }
                 editDialogController.setPerson(selectedPerson);
                 showDialog();
                 break;
             case "deleteButton":
 //                addressBookImpl.delete((Person) tableAddressBook.getSelectionModel().getSelectedItem());
-                if (!personIsSelected(selectedPerson)){
-                    return;
-                }
+//                if (!personIsSelected(selectedPerson)){
+//                    return;
+//                }
                 addressBookImpl.delete(selectedPerson);
                 break;
         }
@@ -201,6 +211,10 @@ public class MainController implements Initializable{
         fillDate();
 
         initLoader();
+
+        connection = DBConnections.connection();
+
+
 
         try {
             setupClearButtonField(textSearch);
@@ -231,4 +245,47 @@ public class MainController implements Initializable{
         }
     }
 
+
+    public void handleSelect(ActionEvent actionEvent) {
+
+    }
+//    @FXML
+//    public void handleSelect(ActionEvent actionEvent) {
+//
+////        int version = Integer.parseInt(txt_name.getText());
+//        Statement statement = null;
+//        PreparedStatement preparedStatement = null;
+//
+//        try {
+//
+////            preparedStatement = connection.prepareStatement("SELECT * FROM VERSION WHERE VERSION > ?");
+////            preparedStatement.setInt(1, Integer.parseInt((String.valueOf(columnFIO))));
+////            ResultSet resultSet1 = preparedStatement.executeQuery();
+////
+////            while (resultSet1.next()){
+////                System.out.println("number # "+ resultSet1.getRow()+
+////                        "\n Number in database " + resultSet1.getInt("version"));
+////            }
+//
+//
+//            statement = connection.createStatement();
+//            ResultSet resultSet = statement.executeQuery("SELECT NAME_USER FROM GASTELLO.DOK WHERE NAME_USER LIKE 'NAS' ");
+//
+//            while (resultSet.next()){
+//                String name = resultSet.getString("NAME_USER");
+//                System.out.println("name: " + name);
+//            }
+//
+//            System.out.println("data select successful!");
+//
+//        } catch (SQLException e) {
+//            Logger.getLogger(DBConnections.class.getName()).log(Level.SEVERE, null, e);
+//        }finally {
+//            try {
+//                connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 }
